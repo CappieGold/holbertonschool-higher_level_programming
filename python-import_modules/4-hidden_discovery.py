@@ -1,6 +1,9 @@
 #!/usr/bin/python3
-import hidden_4
 if __name__ == "__main__":
-    for name in dir(hidden_4):
-        if name[0] != "_":
-            print(name)
+    import hidden_4
+
+    names = dir(hidden_4)
+    filtered_names = [name for name in names if not name.startswith('__')]
+
+    for name in sorted(filtered_names):
+        print(name)
