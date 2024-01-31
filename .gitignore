@@ -55,3 +55,5 @@ python-more_data_structures/4-main.py
 python-more_data_structures/__pycache__/4-only_diff_elements.cpython-310.pyc
 python-more_data_structures/5-main.py
 python-more_data_structures/__pycache__/5-number_keys.cpython-310.pyc
+python-more_data_structures/6-main.py
+python-more_data_structures/__pycache__/6-print_sorted_dictionary.cpython-310.pyc
