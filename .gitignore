@@ -59,3 +59,5 @@ python-more_data_structures/6-main.py
 python-more_data_structures/__pycache__/6-print_sorted_dictionary.cpython-310.pyc
 python-more_data_structures/7-main.py
 python-more_data_structures/__pycache__/7-update_dictionary.cpython-310.pyc
+python-more_data_structures/8-main.py
+python-more_data_structures/__pycache__/8-simple_delete.cpython-310.pyc
