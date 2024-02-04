@@ -71,3 +71,5 @@ python-more_data_structures/12-main.py
 python-more_data_structures/__pycache__/12-roman_to_int.cpython-310.pyc
 python-exceptions/0-main.py
 python-exceptions/__pycache__/0-safe_print_list.cpython-310.pyc
+python-exceptions/1-main.py
+python-exceptions/__pycache__/1-safe_print_integer.cpython-310.pyc
