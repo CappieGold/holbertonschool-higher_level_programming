@@ -83,3 +83,5 @@ python-exceptions/5-main.py
 python-exceptions/__pycache__/5-raise_exception.cpython-310.pyc
 python-exceptions/6-main.py
 python-exceptions/__pycache__/6-raise_exception_msg.cpython-310.pyc
+python-classes/__pycache__/0-square.cpython-310.pyc
+python-classes/0-main.py
