@@ -4,7 +4,6 @@
 Create  empty class Square
 """
 
-
 class Square:
 
     """
