@@ -17,14 +17,6 @@ class Square:
         if size < 0:
             raise ValueError("size must be >= 0")
 
-    """
-    define function for return area of square
-    """
-
-    def area(self):
-        Area_Square = self.__size ** 2
-        return Area_Square
-
     @property
     def size(self):
         return self.__size
@@ -59,3 +51,7 @@ class Square:
             print()
         for _ in range(self.__size):
             print(" " * self.__position[0] + "#" * self.__size)
+
+    def area(self):
+        Area_Square = self.__size ** 2
+        return Area_Square
