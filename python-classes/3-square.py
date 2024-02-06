@@ -8,6 +8,7 @@ class Square:
     """
     define Square by size
     """
+
     def __init__(self, size=0):
         self.__size = size
         if not isinstance(size, int):
@@ -18,6 +19,7 @@ class Square:
     """
     define function for return area of square
     """
+
     def area(self):
         Area_Square = self.__size ** 2
         return Area_Square

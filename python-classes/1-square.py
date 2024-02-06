@@ -8,5 +8,6 @@ class Square:
     """
     define Square by size
     """
+
     def __init__(self, size):
         self.__size = size

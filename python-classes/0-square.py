@@ -8,5 +8,6 @@ class Square:
     """
     define Square
     """
+
     def __init__(self):
         pass
