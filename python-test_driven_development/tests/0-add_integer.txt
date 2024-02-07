@@ -1,0 +1,39 @@
+# doctest 0-add_integer.py
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+# add 2 int
+>>> (add_integer(1, 2))
+3
+
+# add one int, one negatif
+>>> (add_integer(100, -2))
+98
+
+# add with one argument
+>>> (add_integer(2))
+100
+
+# add with float and int negatif
+>>> (add_integer(100.3, -2))
+98
+
+# add with int and str
+>>> (add_integer(4, "School"))
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+
+# Test 7: Throw an exception if a is None
+>>> add_integer(None, 4)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+
+# Test 8: Addition of very large numbers
+>>> add_integer(2147483647, 1)
+2147483648
+
+# Test 9: Addition avec des valeurs négatives
+>>> add_integer(-4, -6)
+-10

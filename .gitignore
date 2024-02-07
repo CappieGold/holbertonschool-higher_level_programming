@@ -99,3 +99,5 @@ python-classes/6-main.py
 python-classes/__pycache__/6-square.cpython-310.pyc
 python-classes/.DS_Store
 .DS_Store
+python-test_driven_development/0-main.py
+python-test_driven_development/__pycache__/0-add_integer.cpython-310.pyc
