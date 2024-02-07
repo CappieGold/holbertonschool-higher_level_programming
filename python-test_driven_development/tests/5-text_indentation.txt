@@ -1,0 +1,32 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# Test 1: Texte normal avec des points, des points d'interrogation et des deux-points
+>>> text_indentation("This is a test. And another test? Finally: done.")
+This is a test.
+<BLANKLINE>
+And another test?
+<BLANKLINE>
+Finally:
+<BLANKLINE>
+done.
+<BLANKLINE>
+
+# Test 2: Lever une exception si l'entrée n'est pas une chaîne
+>>> text_indentation(12)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test 3: Texte avec espaces consécutifs après les signes de ponctuation
+>>> text_indentation("Hello.  How are you?  I am fine:")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+I am fine:
+<BLANKLINE>
+
+# Test 4: Chaîne vide
+>>> text_indentation("")
+<BLANKLINE>
+<BLANKLINE>
