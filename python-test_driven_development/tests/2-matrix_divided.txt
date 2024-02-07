@@ -1,0 +1,21 @@
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+# Test 1: Division normale
+>>> matrix_divided([[1, 2], [3, 4]], 2)
+[[0.5, 1.0], [1.5, 2.0]]
+
+# Test 2: Division avec un float comme diviseur
+>>> matrix_divided([[1, 2], [3, 4]], 2.0)
+[[0.5, 1.0], [1.5, 2.0]]
+
+# Test 3: Lever une exception si la matrice n'est pas une liste de listes
+>>> matrix_divided("pas une matrice", 2)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+# Test 4: Lever une exception si le diviseur est zéro
+>>> matrix_divided([[1, 2], [3, 4]], 0)
+Traceback (most recent call last):
+    ...
+ZeroDivisionError: division by zero
