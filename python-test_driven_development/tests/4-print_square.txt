@@ -1,29 +1,36 @@
+# 4-print_square.txt
 >>> print_square = __import__('4-print_square').print_square
 
-# Test 1: Print a square of size 3
->>> print_square(3)
-###
-###
-###
+"""prints a square with the character #"""
 
-# Test 2: Raise TypeError if size is a float and negative
->>> print_square(-3.7)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
+Test where size is a positiv integer
+>>> print_square(4)
+####
+####
+####
+####
 
-# Test 3: Raise ValueError if size is negative
->>> print_square(-4)
+Test where size is a negativ integer
+>>> print_square(-1)
 Traceback (most recent call last):
-    ...
 ValueError: size must be >= 0
 
-# Test 4: Raise TypeError if size is not an integer
->>> print_square("3")
+Test where size is not an integer
+>>> print_square("e")
 Traceback (most recent call last):
-    ...
 TypeError: size must be an integer
 
-# Test 5: Print a square of size 1
->>> print_square(1)
-#
+Test where size is a float and a negativ integer
+>>> print_square(-2.5)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+Test with the None argument:
+>>> print_square(None)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+Test with no size argument:
+>>> print_square()
+Traceback (most recent call last):
+TypeError: print_square() missing 1 required positional argument: 'size'
