@@ -4,4 +4,5 @@ of the specified class ; otherwise False"""
 
 
 def is_same_class(obj, a_class):
+    """return true if obj is a class"""
     return type(obj) is a_class
