@@ -1,0 +1,66 @@
+# 1-my_list.py
+>>> MyList = __import__('1-my_list').MyList
+
+Test case where it is a list an integer
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+
+
+Test case with no number in the list
+>>> my_list = MyList()
+>>> print(my_list)
+[]
+>>> my_list.print_sorted()
+[]
+>>> print(my_list)
+[]
+
+
+Test list with the same number on the list
+>>> my_list = MyList()
+>>> my_list.append(7)
+>>> my_list.append(7)
+>>> my_list.append(7)
+>>> my_list.append(7)
+>>> my_list.append(7)
+>>> print(my_list)
+[7, 7, 7, 7, 7]
+>>> my_list.print_sorted()
+[7, 7, 7, 7, 7]
+>>> print(my_list)
+[7, 7, 7, 7, 7]
+
+Test list with negativ number
+Test list with the same number on the list
+>>> my_list = MyList()
+>>> my_list.append(-1)
+>>> my_list.append(-4)
+>>> my_list.append(-2)
+>>> my_list.append(-3)
+>>> my_list.append(-5)
+>>> print(my_list)
+[-1, -4, -2, -3, -5]
+>>> my_list.print_sorted()
+[-5, -4, -3, -2, -1]
+>>> print(my_list)
+[-1, -4, -2, -3, -5]
+
+Test case wher elist have just 1 number
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> print(my_list)
+[1]
+>>> my_list.print_sorted()
+[1]
+>>> print(my_list)
+[1]
