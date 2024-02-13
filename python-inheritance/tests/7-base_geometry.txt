@@ -1,0 +1,51 @@
+# 7-base_geometry.py
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+
+# Test with a positive integer
+>>> bg.integer_validator("my_int", 12)
+
+# Test with a negative integer
+>>> bg.integer_validator("number", -12)
+Traceback (most recent call last):
+    ...
+ValueError: number must be greater than 0
+
+# Test with an infinite value
+>>> bg.integer_validator("infnumber", float('inf'))
+Traceback (most recent call last):
+    ...
+TypeError: infnumber must be an integer
+
+# Test with a non-integer (string)
+>>> bg.integer_validator("Name", "John")
+Traceback (most recent call last):
+    ...
+TypeError: Name must be an integer
+
+# Test with zero
+>>> bg.integer_validator("Name", 0)
+Traceback (most recent call last):
+    ...
+ValueError: Name must be greater than 0
+
+# Test with a valid integer but negative
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+    ...
+ValueError: distance must be greater than 0
+
+# Test with float number
+>>> bg.integer_validator("float_num", 3.14)
+Traceback (most recent call last):
+    ...
+TypeError: float_num must be an integer
+
+# Test with a boolean value
+>>> bg.integer_validator("bool_val", True)
+Traceback (most recent call last):
+    ...
+TypeError: bool_val must be an integer
+
+# Test with a large integer
+>>> bg.integer_validator("big_num", 999999999999)
