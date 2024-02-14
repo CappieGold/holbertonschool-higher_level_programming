@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-"""Module for the BaseGeometry class.
+"""Module for the BaseGeometry class."""
 
-This module provides the BaseGeometry class used as a base class
-for other geometric shapes in future implementations.
-"""
 
 class BaseGeometry:
     """BaseGeometry class for future geometric shapes.
