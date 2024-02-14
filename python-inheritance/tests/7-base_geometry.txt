@@ -49,3 +49,27 @@ TypeError: bool_val must be an integer
 
 # Test with a large integer
 >>> bg.integer_validator("big_num", 999999999999)
+
+# Test with a tuple
+>>> bg.integer_validator("tuple_val", (1, 2))
+Traceback (most recent call last):
+    ...
+TypeError: tuple_val must be an integer
+
+# Test with a list
+>>> bg.integer_validator("list_val", [1, 2])
+Traceback (most recent call last):
+    ...
+TypeError: list_val must be an integer
+
+# Test with None
+>>> bg.integer_validator("none_val", None)
+Traceback (most recent call last):
+    ...
+TypeError: none_val must be an integer
+
+# Test with a complex number
+>>> bg.integer_validator("complex_val", complex(1, 2))
+Traceback (most recent call last):
+    ...
+TypeError: complex_val must be an integer
