@@ -164,3 +164,6 @@ python-inheritance/__pycache__/11-square.cpython-310.pyc
 python-input_output/0-main.py
 python-input_output/my_file_0.txt
 python-input_output/__pycache__/0-read_file.cpython-310.pyc
+python-input_output/1-main.py
+python-input_output/my_first_file.txt
+python-input_output/__pycache__/1-write_file.cpython-310.pyc
