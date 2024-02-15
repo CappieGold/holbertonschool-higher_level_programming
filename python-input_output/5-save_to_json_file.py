@@ -10,6 +10,6 @@ def save_to_json_file(my_obj, filename):
         filename (str): The file to write the JSON string to.
     """
     import json
-    content_write = json.dump(my_obj)
+    content_write = json.dumps(my_obj)
     with open(filename, 'w', encoding="utf-8") as file:
         file.write(content_write)
