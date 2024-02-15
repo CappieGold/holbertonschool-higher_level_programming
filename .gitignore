@@ -174,3 +174,7 @@ python-input_output/3-main.py
 python-input_output/__pycache__/3-to_json_string.cpython-310.pyc
 python-input_output/__pycache__/4-from_json_string.cpython-310.pyc
 python-input_output/4-main.py
+python-input_output/__pycache__/5-save_to_json_file.cpython-310.pyc
+python-input_output/my_list.json
+python-input_output/my_dict.json
+python-input_output/5-main.py
