@@ -187,3 +187,6 @@ python-input_output/9-main.py
 python-input_output/__pycache__/9-student.cpython-310.pyc
 python-input_output/10-main.py
 python-input_output/__pycache__/10-student.cpython-310.pyc
+python-input_output/11-main.py
+python-input_output/student.json
+python-input_output/__pycache__/11-student.cpython-310.pyc
