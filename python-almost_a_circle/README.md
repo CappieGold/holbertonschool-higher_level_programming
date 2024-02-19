@@ -1,3 +1,5 @@
+![image](https://github.com/CappieGold/holbertonschool-higher_level_programming/assets/144028326/255c2a0b-7988-4278-850b-da2b9e9b5420)
+
 # Python - Almost a circle
 
 ## Learning Objectives
