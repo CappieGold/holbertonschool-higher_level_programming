@@ -3,27 +3,11 @@ from models.base import Base
 
 class Rectangle(Base):
     def __init__(self, width, height, x=0, y=0, id=None):
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
         super().__init__(id)
-        self.validate_dimension("width", width)
-        self.validate_dimension("height", height)
-        self.validate_coordinate("x", x)
-        self.validate_coordinate("y", y)
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
-
-    def validate_dimension(self, name, value):
-        if not isinstance(value, int):
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be > 0")
-
-    def validate_coordinate(self, name, value):
-        if not isinstance(value, int):
-            raise TypeError(f"{name} must be an integer")
-        if value < 0:
-            raise ValueError(f"{name} must be >= 0")
 
     @property
     def width(self):
@@ -31,7 +15,10 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        self.validate_dimension("width", value)
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        elif value <= 0:
+            raise ValueError("width must be > 0")
         self.__width = value
 
     @property
@@ -40,7 +27,10 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
-        self.validate_dimension("height", value)
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")
+        elif value < 0:
+            raise ValueError("height must be > 0")
         self.__height = value
 
     @property
@@ -49,7 +39,10 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        self.validate_coordinate("x", value)
+        if not isinstance(value, int):
+            raise TypeError("x must be an integer")
+        elif value < 0:
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
@@ -58,5 +51,8 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        self.validate_coordinate("y", value)
+        if not isinstance(value, int):
+            raise TypeError("y must be an integer")
+        elif value < 0:
+            raise ValueError("y must be >= 0")
         self.__y = value
