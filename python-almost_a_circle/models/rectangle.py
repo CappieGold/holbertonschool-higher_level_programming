@@ -108,13 +108,6 @@ class Rectangle(Base):
                 4th argument represents x attribute.
                 5th argument represents y attribute.
         """
-        if len(args) <= 1:
-            self.id = args[0]
-        elif len(args) <= 2:
-            self.__width = args[1]
-        elif len(args) <= 3:
-            self.__height = args[2]
-        elif len(args) <= 4:
-            self.__x = args[3]
-        else:
-            self.__y = args[4]
+        attributes = ['id', 'width', 'height', 'x', 'y']
+        for attr, arg in zip(attributes, args):
+            setattr(self, attr, arg)
