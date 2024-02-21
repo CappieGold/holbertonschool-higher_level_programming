@@ -33,3 +33,18 @@ class Square(Rectangle):
         """Return the string representation of the square."""
         return "[Square] ({}) {}/{} - {}"\
             .format(self.id, self.x, self.y, self.size)
+
+    def update(self, *args, **kwargs):
+        """Update attributes of the square.
+
+        Args:
+            *args (tuple): New attribute values, in order of 'id', 'size', 'x', 'y'.
+            **kwargs (dict): New attribute values as key-value pairs.
+        """
+        attributes = ['id', 'size', 'x', 'y']
+        if len(args) > 0:
+            for attr, arg in zip(attributes, args):
+                setattr(self, attr, arg)
+        else:
+            for attrk, value in kwargs.items():
+                setattr(self, attrk, value)
