@@ -96,3 +96,25 @@ class Rectangle(Base):
         """Return the string representation of the rectangle."""
         return "[Rectangle] ({}) {}/{} - {}/{}"\
             .format(self.id, self.__x, self.__y, self.__width, self.__height)
+
+    def update(self, *args):
+        """Update the attributes of the rectangle.
+
+        Args:
+            *args: Variable length argument list for attributes.
+                1st argument represents id attribute.
+                2nd argument represents width attribute.
+                3rd argument represents height attribute.
+                4th argument represents x attribute.
+                5th argument represents y attribute.
+        """
+        if len(args) <= 1:
+            self.id = args[0]
+        elif len(args) <= 2:
+            self.__width = args[1]
+        elif len(args) <= 3:
+            self.__height = args[2]
+        elif len(args) <= 4:
+            self.__x = args[3]
+        else:
+            self.__y = args[4]
