@@ -27,6 +27,7 @@ class Square(Rectangle):
         """Set the size of the square and update width and height."""
         self.width = value
         self.height = value
+        super().width
 
     def __str__(self):
         """Return the string representation of the square."""
