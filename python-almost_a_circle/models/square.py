@@ -38,7 +38,8 @@ class Square(Rectangle):
         """Update attributes of the square.
 
         Args:
-            *args (tuple): New attribute values, in order of 'id', 'size', 'x', 'y'.
+            *args (tuple): New attribute values,
+            in order of 'id', 'size', 'x', 'y'.
             **kwargs (dict): New attribute values as key-value pairs.
         """
         attributes = ['id', 'size', 'x', 'y']
