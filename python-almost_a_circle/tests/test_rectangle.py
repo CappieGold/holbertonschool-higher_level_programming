@@ -132,5 +132,36 @@ class TestRectangle(unittest.TestCase):
         r1.update(height=1, width=2, y=3, x=4, id=88)
         self.assertEqual(str(r1), "[Rectangle] (88) 4/3 - 2/1")
 
+    def test_to_dictionary(self):
+        r1 = Rectangle(10, 2, 1, 9)
+        r1_dict = r1.to_dictionary()
+        expected_dict = {'id': r1.id, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
+        self.assertEqual(r1_dict, expected_dict)
+        self.assertIsInstance(r1_dict, dict)
+
+        r2 = Rectangle(1, 1)
+        r2.update(**r1_dict)
+        self.assertEqual(str(r2), str(r1))
+        self.assertFalse(r1 == r2)
+
+    def test_to_dictionary_with_varied_values(self):
+        r1 = Rectangle(5, 7, 2, 8, 12)
+        r1_dict = r1.to_dictionary()
+        expected_dict = {'id': 12, 'width': 5, 'height': 7, 'x': 2, 'y': 8}
+        self.assertEqual(r1_dict, expected_dict)
+
+        r2 = Rectangle(3, 4, 1, 0, 10)
+        r2_dict = r2.to_dictionary()
+        expected_dict2 = {'id': 10, 'width': 3, 'height': 4, 'x': 1, 'y': 0}
+        self.assertEqual(r2_dict, expected_dict2)
+
+    def test_to_dictionary_independence(self):
+        r1 = Rectangle(4, 2, 0, 0, 15)
+        r1_dict = r1.to_dictionary()
+        r1_dict['width'] = 10
+
+        # Ensure original rectangle's width is unchanged
+        self.assertEqual(r1.width, 4)
+
 if __name__ == "__main__":
     unittest.main()
