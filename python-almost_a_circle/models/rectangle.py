@@ -97,17 +97,29 @@ class Rectangle(Base):
         return "[Rectangle] ({}) {}/{} - {}/{}"\
             .format(self.id, self.__x, self.__y, self.__width, self.__height)
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Update the attributes of the rectangle.
 
         Args:
             *args: Variable length argument list for attributes.
-                1st argument represents id attribute.
-                2nd argument represents width attribute.
-                3rd argument represents height attribute.
-                4th argument represents x attribute.
-                5th argument represents y attribute.
+            If provided, updates the attributes in this order:
+                - 1st argument represents id attribute.
+                - 2nd argument represents width attribute.
+                - 3rd argument represents height attribute.
+                - 4th argument represents x attribute.
+                - 5th argument represents y attribute.
+            **kwargs: Arbitrary keyword arguments.
+            Each key represents the name of an attribute,
+            and its value is the new value for that attribute.
+
+        Note:
+            - If both args and kwargs are provided,
+            args will be processed first.
+            - kwargs will only be processed if args is not given or
+            doesn't contain enough arguments to update all attributes.
         """
         attributes = ['id', 'width', 'height', 'x', 'y']
         for attr, arg in zip(attributes, args):
             setattr(self, attr, arg)
+        for attrK, value in kwargs.items():
+            setattr(self, attrK, value)
