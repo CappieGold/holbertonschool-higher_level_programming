@@ -2,7 +2,10 @@
 """ Unit tests for Base class """
 
 import unittest
+import json
 from models.base import Base
+from models.rectangle import Rectangle
+
 
 class TestBase(unittest.TestCase):
     """
@@ -47,6 +50,22 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b6.id, 2)
         self.assertEqual(b7.id, 3)
         self.assertEqual(b8.id, 5)
+
+    def test_to_json_string_with_valid_dict(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string([dictionary])
+        expected_json = json.dumps([dictionary])
+        self.assertEqual(json_dictionary, expected_json)
+        self.assertIsInstance(json_dictionary, str)
+
+    def test_to_json_string_with_empty_list(self):
+        json_dictionary = Base.to_json_string([])
+        self.assertEqual(json_dictionary, "[]")
+
+    def test_to_json_string_with_none(self):
+        json_dictionary = Base.to_json_string(None)
+        self.assertEqual(json_dictionary, "[]")
 
 if __name__ == "__main__":
     unittest.main()
