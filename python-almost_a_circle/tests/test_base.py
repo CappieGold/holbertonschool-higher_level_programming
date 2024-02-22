@@ -68,6 +68,21 @@ class TestBase(unittest.TestCase):
         json_dictionary = Base.to_json_string(None)
         self.assertEqual(json_dictionary, "[]")
 
+    def test_from_json_string_with_valid_json(self):
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_with_empty_string(self):
+        self.assertEqual(Rectangle.from_json_string(""), [])
+
+    def test_from_json_string_with_none(self):
+        self.assertEqual(Rectangle.from_json_string(None), [])
+
 class TestRectangleSaveToFile(unittest.TestCase):
 
     @classmethod
