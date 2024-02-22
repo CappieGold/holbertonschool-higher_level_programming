@@ -6,6 +6,7 @@ import json
 import os
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 
 
 class TestBase(unittest.TestCase):
@@ -122,6 +123,50 @@ class TestRectangleSaveToFile(unittest.TestCase):
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
+
+class TestLoadFromFile(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.r1 = Rectangle(10, 7, 2, 8)
+        cls.r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([cls.r1, cls.r2])
+
+        cls.s1 = Square(5)
+        cls.s2 = Square(7, 9, 1)
+        Square.save_to_file([cls.s1, cls.s2])
+
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            os.remove("Rectangle.json")
+            os.remove("Square.json")
+        except FileNotFoundError:
+            pass
+
+    def test_load_from_file_rectangles(self):
+        list_rectangles = Rectangle.load_from_file()
+        self.assertEqual(len(list_rectangles), 2)
+        self.assertIsInstance(list_rectangles[0], Rectangle)
+        self.assertIsInstance(list_rectangles[1], Rectangle)
+        self.assertNotEqual(id(list_rectangles[0]), id(self.r1))
+        self.assertNotEqual(id(list_rectangles[1]), id(self.r2))
+
+    def test_load_from_file_squares(self):
+        list_squares = Square.load_from_file()
+        self.assertEqual(len(list_squares), 2)
+        self.assertIsInstance(list_squares[0], Square)
+        self.assertIsInstance(list_squares[1], Square)
+        self.assertNotEqual(id(list_squares[0]), id(self.s1))
+        self.assertNotEqual(id(list_squares[1]), id(self.s2))
+
+    def test_load_from_file_no_file(self):
+        try:
+            os.remove("Rectangle.json")
+        except FileNotFoundError:
+            pass
+        self.assertEqual(Rectangle.load_from_file(), [])
 
 if __name__ == "__main__":
     unittest.main()
