@@ -83,6 +83,15 @@ class TestBase(unittest.TestCase):
     def test_from_json_string_with_none(self):
         self.assertEqual(Rectangle.from_json_string(None), [])
 
+    def test_create_method(self):
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+
+        self.assertEqual(r1_dictionary, r2.to_dictionary())
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
+
 class TestRectangleSaveToFile(unittest.TestCase):
 
     @classmethod
