@@ -9,11 +9,16 @@ from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
+    """
+    Test class
+    """
 
     def setUp(self):
+        """Test"""
         Base._Base__nb_objects = 0
 
     def test_id_assignment(self):
+        """Test"""
         r1 = Rectangle(10, 2)
         self.assertEqual(r1.id, 1)
 
@@ -24,30 +29,35 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.id, 12)
 
     def test_width_height_type_validation(self):
+        """test"""
         with self.assertRaises(TypeError):
             Rectangle("10", 2)
         with self.assertRaises(TypeError):
             Rectangle(10, "2")
 
     def test_width_height_value_validation(self):
+        """test"""
         with self.assertRaises(ValueError):
             Rectangle(-10, 2)
         with self.assertRaises(ValueError):
             Rectangle(10, -2)
 
     def test_x_y_type_validation(self):
+        """test"""
         with self.assertRaises(TypeError):
             Rectangle(10, 2, "0", 0)
         with self.assertRaises(TypeError):
             Rectangle(10, 2, 0, "0")
 
     def test_x_y_value_validation(self):
+        """test"""
         with self.assertRaises(ValueError):
             Rectangle(10, 2, -1, 0)
         with self.assertRaises(ValueError):
             Rectangle(10, 2, 0, -1)
 
     def test_area(self):
+        """test"""
         r1 = Rectangle(3, 2)
         self.assertEqual(r1.area(), 6)
 
@@ -58,6 +68,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.area(), 56)
 
     def test_display(self):
+        """test"""
         r1 = Rectangle(4, 6)
         f = io.StringIO()
         with redirect_stdout(f):
@@ -73,6 +84,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(s, "##\n##\n")
 
     def test_str_method(self):
+        """test"""
         r1 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
 
@@ -80,6 +92,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
 
     def test_display_with_xy(self):
+        """test"""
         r1 = Rectangle(2, 3, 2, 2)
         f = io.StringIO()
         with redirect_stdout(f):
@@ -97,6 +110,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(s, expected_output)
 
     def test_update(self):
+        """test"""
         r1 = Rectangle(10, 10, 10, 10)
         r1.update(89)
         self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 10/10")
@@ -114,6 +128,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
 
     def test_update_kwargs_only(self):
+        """test"""
         r1 = Rectangle(10, 10, 10, 10)
         r1.update(height=1)
         self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/1")
@@ -128,11 +143,13 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r1), "[Rectangle] (89) 1/3 - 4/2")
 
     def test_update_kwargs(self):
+        """test"""
         r1 = Rectangle(10, 10, 10, 10)
         r1.update(height=1, width=2, y=3, x=4, id=88)
         self.assertEqual(str(r1), "[Rectangle] (88) 4/3 - 2/1")
 
     def test_to_dictionary(self):
+        """test"""
         r1 = Rectangle(10, 2, 1, 9)
         r1_dict = r1.to_dictionary()
         expected_dict = {'id': r1.id, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
@@ -145,6 +162,7 @@ class TestRectangle(unittest.TestCase):
         self.assertFalse(r1 == r2)
 
     def test_to_dictionary_with_varied_values(self):
+        """test"""
         r1 = Rectangle(5, 7, 2, 8, 12)
         r1_dict = r1.to_dictionary()
         expected_dict = {'id': 12, 'width': 5, 'height': 7, 'x': 2, 'y': 8}
@@ -156,12 +174,14 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2_dict, expected_dict2)
 
     def test_to_dictionary_independence(self):
+        """test"""
         r1 = Rectangle(4, 2, 0, 0, 15)
         r1_dict = r1.to_dictionary()
         r1_dict['width'] = 10
 
         # Ensure original rectangle's width is unchanged
         self.assertEqual(r1.width, 4)
+
 
 if __name__ == "__main__":
     unittest.main()
