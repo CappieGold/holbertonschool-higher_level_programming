@@ -270,6 +270,14 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             Rectangle(0, 2)
 
+    def test_width_zero_or_negative_value_error(self):
+        with self.assertRaises(ValueError) as error:
+            Rectangle(0, 2)
+        self.assertEqual(str(error.exception), "width must be > 0")
+        with self.assertRaises(ValueError) as error:
+            Rectangle(-1, 2)
+        self.assertEqual(str(error.exception), "width must be > 0")
+
 
 if __name__ == "__main__":
     unittest.main()
