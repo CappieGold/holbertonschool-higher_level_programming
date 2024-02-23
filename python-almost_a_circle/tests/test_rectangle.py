@@ -182,6 +182,43 @@ class TestRectangle(unittest.TestCase):
         # Ensure original rectangle's width is unchanged
         self.assertEqual(r1.width, 4)
 
+    def test_rectangle_missing_parameters(self):
+        """test"""
+        with self.assertRaises(TypeError):
+            Rectangle(10)
+        with self.assertRaises(TypeError):
+            Rectangle()
+
+    def test_rectangle_edge_values(self):
+        """test"""
+        r = Rectangle(99999999, 99999999)
+        self.assertEqual(r.width, 99999999)
+        self.assertEqual(r.height, 99999999)
+
+    def test_update_with_mixed_args(self):
+        """test"""
+        r = Rectangle(10, 10, 10, 10)
+        r.update(12, height=2, y=3)
+        self.assertEqual(str(r), "[Rectangle] (12) 10/3 - 10/2")
+
+    def test_update_with_invalid_args(self):
+        """test"""
+        r = Rectangle(10, 10)
+        with self.assertRaises(ValueError):
+            r.update(width=-10)
+        with self.assertRaises(TypeError):
+            r.update(x="2")
+
+    def test_state_after_update(self):
+        """test"""
+        r = Rectangle(10, 10)
+        r.update(20, 30, 40, 50, 60)
+        self.assertEqual(r.id, 20)
+        self.assertEqual(r.width, 30)
+        self.assertEqual(r.height, 40)
+        self.assertEqual(r.x, 50)
+        self.assertEqual(r.y, 60)
+
 
 if __name__ == "__main__":
     unittest.main()
