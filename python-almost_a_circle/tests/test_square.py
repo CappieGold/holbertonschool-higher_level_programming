@@ -5,12 +5,17 @@ import unittest
 from models.base import Base
 from models.square import Square
 
+
 class TestSquare(unittest.TestCase):
+    """
+    test
+    """
 
     def setUp(self):
         Base._Base__nb_objects = 0
 
     def test_square_creation(self):
+        """test"""
         s1 = Square(5)
         self.assertEqual(str(s1), "[Square] (1) 0/0 - 5")
         self.assertEqual(s1.area(), 25)
@@ -24,6 +29,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s3.area(), 9)
 
     def test_size_setter(self):
+        """test"""
         s1 = Square(5)
         s1.size = 10
         self.assertEqual(s1.size, 10)
@@ -33,6 +39,7 @@ class TestSquare(unittest.TestCase):
             s1.size = "9"
 
     def test_update_method(self):
+        """test"""
         s1 = Square(5)
         s1.update(10)
         self.assertEqual(str(s1), "[Square] (10) 0/0 - 5")
@@ -56,6 +63,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(s1), "[Square] (89) 12/1 - 7")
 
     def test_to_dictionary_square(self):
+        """test"""
         s1 = Square(10, 2, 1)
         s1_dict = s1.to_dictionary()
         expected_dict = {'id': s1.id, 'size': 10, 'x': 2, 'y': 1}
