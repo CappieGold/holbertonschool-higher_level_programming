@@ -271,12 +271,31 @@ class TestRectangle(unittest.TestCase):
             Rectangle(0, 2)
 
     def test_width_zero_or_negative_value_error(self):
+        """test"""
         with self.assertRaises(ValueError) as error:
             Rectangle(0, 2)
         self.assertEqual(str(error.exception), "width must be > 0")
         with self.assertRaises(ValueError) as error:
             Rectangle(-1, 2)
         self.assertEqual(str(error.exception), "width must be > 0")
+
+    def test_x_type_error(self):
+        """test"""
+        with self.assertRaises(TypeError) as error:
+            Rectangle(2, 3, "0", 0)
+        self.assertEqual(str(error.exception), "x must be an integer")
+
+    def test_y_negative_value_error(self):
+        """test"""
+        with self.assertRaises(ValueError) as error:
+            Rectangle(2, 3, 0, -1)
+        self.assertEqual(str(error.exception), "y must be >= 0")
+
+    def test_height_type_error(self):
+        """test"""
+        with self.assertRaises(TypeError) as error:
+            Rectangle(2, "3")
+        self.assertEqual(str(error.exception), "height must be an integer")
 
 
 if __name__ == "__main__":
