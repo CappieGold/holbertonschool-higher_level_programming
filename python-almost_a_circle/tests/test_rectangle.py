@@ -298,6 +298,7 @@ class TestRectangle(unittest.TestCase):
             Rectangle(2, "3")
         self.assertEqual(str(error.exception), "height must be an integer")
 
+
 class TestRectangle_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Rectangle class."""
 
