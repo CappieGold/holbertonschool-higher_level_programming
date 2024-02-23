@@ -101,6 +101,45 @@ class TestBase(unittest.TestCase):
         self.assertFalse(r1 is r2)
         self.assertFalse(r1 == r2)
 
+    def test_save_to_file(self):
+        """Test saving to file."""
+        r1 = Rectangle(10, 7, 2, 8)
+        Rectangle.save_to_file([r1])
+        self.assertTrue(os.path.exists("Rectangle.json"))
+
+    def test_load_from_file(self):
+        """Test loading from file."""
+        r1 = Rectangle(10, 7, 2, 8)
+        Rectangle.save_to_file([r1])
+        list_of_rectangles = Rectangle.load_from_file()
+        self.assertIsInstance(list_of_rectangles[0], Rectangle)
+        self.assertEqual(str(list_of_rectangles[0]), str(r1))
+
+    def test_id_after_reset(self):
+        """Test ID after resetting the internal counter."""
+        Base._Base__nb_objects = 0
+        b1 = Base()
+        self.assertEqual(b1.id, 1)
+
+    def test_square_json_serialization(self):
+        """Test JSON serialization with Square."""
+        s1 = Square(5)
+        dict_s1 = s1.to_dictionary()
+        json_s1 = Base.to_json_string([dict_s1])
+        self.assertTrue(isinstance(json_s1, str))
+        list_output = Square.from_json_string(json_s1)
+        self.assertEqual(list_output[0], dict_s1)
+
+    def test_create_method_with_square(self):
+        """Test the create method with a Square."""
+        s1 = Square(5, 1, 3)
+        s1_dict = s1.to_dictionary()
+        s2 = Square.create(**s1_dict)
+
+        self.assertEqual(str(s1), str(s2))
+        self.assertFalse(s1 is s2)
+        self.assertFalse(s1 == s2)
+
 
 class TestRectangleSaveToFile(unittest.TestCase):
     """
@@ -142,6 +181,43 @@ class TestRectangleSaveToFile(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
+    def test_save_to_file_with_modified_objects(self):
+        """test"""
+        self.r1.width = 20
+        self.r2.x = 5
+        Rectangle.save_to_file([self.r1, self.r2])
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+            expected = json.dumps([self.r1.to_dictionary(),
+                                   self.r2.to_dictionary()])
+        self.assertEqual(content, expected)
+
+    def test_save_to_file_with_mixed_types(self):
+        """test"""
+        s1 = Square(5)
+        Rectangle.save_to_file([self.r1, s1])
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+            expected = json.dumps([self.r1.to_dictionary(),
+                                   s1.to_dictionary()])
+            self.assertEqual(content, expected)
+
+    def test_save_to_file_creates_new_file(self):
+        """test"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        Rectangle.save_to_file([self.r1])
+        self.assertTrue(os.path.exists("Rectangle.json"))
+
+    def test_save_to_file_data_persistence(self):
+        """test"""
+        Rectangle.save_to_file([self.r1])
+        with open("Rectangle.json", "r") as file:
+            content1 = file.read()
+        with open("Rectangle.json", "r") as file:
+            content2 = file.read()
+        self.assertEqual(content1, content2)
+
 
 class TestLoadFromFile(unittest.TestCase):
     """
@@ -176,6 +252,28 @@ class TestLoadFromFile(unittest.TestCase):
         self.assertIsInstance(list_rectangles[1], Rectangle)
         self.assertNotEqual(id(list_rectangles[0]), id(self.r1))
         self.assertNotEqual(id(list_rectangles[1]), id(self.r2))
+
+    def test_load_from_modified_file(self):
+        """test"""
+        modified_dict = {'id': self.r1.id, 'width': 20,
+                         'height': 15, 'x': 5, 'y': 5}
+        with open("Rectangle.json", "w") as file:
+            file.write(json.dumps([modified_dict]))
+        list_rectangles = Rectangle.load_from_file()
+        self.assertEqual(list_rectangles[0].to_dictionary(), modified_dict)
+
+    def test_load_from_missing_file(self):
+        """test"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        self.assertEqual(Rectangle.load_from_file(), [])
+
+    def test_data_consistency_after_loading(self):
+        """test"""
+        list_rectangles = Rectangle.load_from_file()
+        original_dict = self.r1.to_dictionary()
+        loaded_dict = list_rectangles[0].to_dictionary()
+        self.assertEqual(original_dict, loaded_dict)
 
     @classmethod
     def tearDownClass(cls):
