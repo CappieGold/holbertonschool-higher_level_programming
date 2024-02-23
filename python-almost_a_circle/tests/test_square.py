@@ -75,6 +75,43 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(s2), str(s1))
         self.assertFalse(s1 == s2)
 
+    def test_square_invalid_size(self):
+        """test"""
+        with self.assertRaises(ValueError):
+            Square(-1)
+        with self.assertRaises(TypeError):
+            Square("5")
+
+    def test_setters_with_invalid_values(self):
+        """test"""
+        s = Square(3)
+        with self.assertRaises(ValueError):
+            s.size = -10
+        with self.assertRaises(TypeError):
+            s.x = "2"
+        with self.assertRaises(ValueError):
+            s.y = -1
+
+    def test_str_method(self):
+        """test"""
+        s = Square(4, 5, 6, 7)
+        self.assertEqual(str(s), "[Square] (7) 5/6 - 4")
+
+    def test_area_with_different_sizes(self):
+        """test"""
+        s = Square(2)
+        self.assertEqual(s.area(), 4)
+        s.size = 3
+        self.assertEqual(s.area(), 9)
+
+    def test_serialization_deserialization(self):
+        """test"""
+        s = Square(4, 5, 6, 7)
+        s_dict = s.to_dictionary()
+        new_s = Square.create(**s_dict)
+        self.assertEqual(str(new_s), str(s))
+        self.assertNotEqual(id(new_s), id(s))
+
 
 if __name__ == "__main__":
     unittest.main()
