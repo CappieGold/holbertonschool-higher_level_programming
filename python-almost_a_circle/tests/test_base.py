@@ -136,7 +136,6 @@ class TestLoadFromFile(unittest.TestCase):
         cls.s2 = Square(7, 9, 1)
         Square.save_to_file([cls.s1, cls.s2])
 
-
     @classmethod
     def tearDownClass(cls):
         try:
