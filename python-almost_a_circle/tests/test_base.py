@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Unit tests for Base class """
 
+
 import unittest
 import json
 import os
@@ -54,6 +55,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b8.id, 5)
 
     def test_to_json_string_with_valid_dict(self):
+        """Test"""
         r1 = Rectangle(10, 7, 2, 8)
         dictionary = r1.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
@@ -62,14 +64,17 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(json_dictionary, str)
 
     def test_to_json_string_with_empty_list(self):
+        """Test"""
         json_dictionary = Base.to_json_string([])
         self.assertEqual(json_dictionary, "[]")
 
     def test_to_json_string_with_none(self):
+        """Test"""
         json_dictionary = Base.to_json_string(None)
         self.assertEqual(json_dictionary, "[]")
 
     def test_from_json_string_with_valid_json(self):
+        """Test"""
         list_input = [
             {'id': 89, 'width': 10, 'height': 4},
             {'id': 7, 'width': 1, 'height': 7}
@@ -79,12 +84,15 @@ class TestBase(unittest.TestCase):
         self.assertEqual(list_input, list_output)
 
     def test_from_json_string_with_empty_string(self):
+        """Test"""
         self.assertEqual(Rectangle.from_json_string(""), [])
 
     def test_from_json_string_with_none(self):
+        """Test"""
         self.assertEqual(Rectangle.from_json_string(None), [])
 
     def test_create_method(self):
+        """Test"""
         r1 = Rectangle(3, 5, 1)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
@@ -93,41 +101,56 @@ class TestBase(unittest.TestCase):
         self.assertFalse(r1 is r2)
         self.assertFalse(r1 == r2)
 
+
 class TestRectangleSaveToFile(unittest.TestCase):
+    """
+    test save to file methode
+    """
 
     @classmethod
     def setUpClass(cls):
+        """setUpclass"""
         cls.r1 = Rectangle(10, 7, 2, 8)
         cls.r2 = Rectangle(2, 4)
 
     @classmethod
     def tearDownClass(cls):
+        """remove"""
         try:
             os.remove("Rectangle.json")
         except FileNotFoundError:
             pass
 
     def test_save_to_file_with_objects(self):
+        """Test"""
         Rectangle.save_to_file([self.r1, self.r2])
         with open("Rectangle.json", "r") as file:
             content = file.read()
-            expected = json.dumps([self.r1.to_dictionary(), self.r2.to_dictionary()])
+            expected = json.dumps([self.r1.to_dictionary(),
+                                   self.r2.to_dictionary()])
             self.assertEqual(content, expected)
 
     def test_save_to_file_with_none(self):
+        """Test"""
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
     def test_save_to_file_with_empty_list(self):
+        """Test"""
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
+
 class TestLoadFromFile(unittest.TestCase):
+    """
+    Test load from file method
+    """
 
     @classmethod
     def setUpClass(cls):
+        """setupclass"""
         cls.r1 = Rectangle(10, 7, 2, 8)
         cls.r2 = Rectangle(2, 4)
         Rectangle.save_to_file([cls.r1, cls.r2])
@@ -136,8 +159,8 @@ class TestLoadFromFile(unittest.TestCase):
         cls.s2 = Square(7, 9, 1)
         Square.save_to_file([cls.s1, cls.s2])
 
-
     def test_load_from_file_squares(self):
+        """Test"""
         list_squares = Square.load_from_file()
         self.assertEqual(len(list_squares), 2)
         self.assertIsInstance(list_squares[0], Square)
@@ -146,6 +169,7 @@ class TestLoadFromFile(unittest.TestCase):
         self.assertNotEqual(id(list_squares[1]), id(self.s2))
 
     def test_load_from_file_rectangles(self):
+        """Test"""
         list_rectangles = Rectangle.load_from_file()
         self.assertEqual(len(list_rectangles), 2)
         self.assertIsInstance(list_rectangles[0], Rectangle)
@@ -155,11 +179,13 @@ class TestLoadFromFile(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """remove"""
         try:
             os.remove("Rectangle.json")
             os.remove("Square.json")
         except FileNotFoundError:
             pass
+
 
 if __name__ == "__main__":
     unittest.main()
