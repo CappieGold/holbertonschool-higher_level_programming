@@ -237,6 +237,39 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.width = 0
 
+    def test_width_type_error(self):
+        """test"""
+        r = Rectangle(2, 3)
+        with self.assertRaises(TypeError):
+            r.width = "10"
+
+    def test_width_negative_value_error(self):
+        """test"""
+        r = Rectangle(2, 3)
+        with self.assertRaises(ValueError):
+            r.width = -10
+
+    def test_width_zero_value_error(self):
+        """test"""
+        r = Rectangle(2, 3)
+        with self.assertRaises(ValueError):
+            r.width = 0
+
+    def test_width_type_error_on_creation(self):
+        """test"""
+        with self.assertRaises(TypeError):
+            Rectangle("10", 2)
+
+    def test_width_negative_value_error_on_creation(self):
+        """test"""
+        with self.assertRaises(ValueError):
+            Rectangle(-10, 2)
+
+    def test_width_zero_value_error_on_creation(self):
+        """test"""
+        with self.assertRaises(ValueError):
+            Rectangle(0, 2)
+
 
 if __name__ == "__main__":
     unittest.main()
