@@ -219,6 +219,24 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.x, 50)
         self.assertEqual(r.y, 60)
 
+    def test_rectangle_width_zero(self):
+        """test"""
+        with self.assertRaises(ValueError):
+            Rectangle(0, 5)
+        with self.assertRaises(ValueError):
+            Rectangle(0, 5, 0, 0)
+
+    def test_rectangle_width_zero_with_id(self):
+        """test"""
+        with self.assertRaises(ValueError):
+            Rectangle(0, 5, 0, 0, 10)
+
+    def test_rectangle_set_width_to_zero(self):
+        """test"""
+        r = Rectangle(2, 3)
+        with self.assertRaises(ValueError):
+            r.width = 0
+
 
 if __name__ == "__main__":
     unittest.main()
