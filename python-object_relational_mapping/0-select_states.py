@@ -3,15 +3,15 @@ import MySQLdb
 import sys
 
 
-def main():
+if __name__ == "__main__":
+
     # Récupération des arguments
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
 
     # Connexion à la base de données
-    db = MySQLdb.connect(host="localhost", port=3306, user=username,
-                         passwd=password, db=database)
+    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
     cur = db.cursor()
 
     # Exécution de la requête SELECT
@@ -25,7 +25,3 @@ def main():
     cur.close()
     db.close()
 
-
-# Vérifie que le script n'est pas importé
-if __name__ == "__main__":
-    main()
