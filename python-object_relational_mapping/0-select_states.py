@@ -10,7 +10,8 @@ def main():
     database = sys.argv[3]
 
     # Connexion à la base de données
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+    db = MySQLdb.connect(host="localhost", port=3306, user=username,
+                         passwd=password, db=database)
     cur = db.cursor()
 
     # Exécution de la requête SELECT
